@@ -40,7 +40,7 @@ const formatDate = (date) => {
         <template #header>
             <div class="flex items-center justify-between">
                 <div class="flex items-center">
-                    <div class="bg-gradient-to-r from-blue-600 to-orange-500 p-2 rounded-lg mr-3">
+                    <div class="bg-blue-600 p-2 rounded-lg mr-3">
                         <ChartBarIcon class="h-6 w-6 text-white" />
                     </div>
                     <div>
@@ -51,7 +51,7 @@ const formatDate = (date) => {
                 <div class="flex items-center space-x-3">
                     <Link
                         :href="route('documents.create')"
-                        class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-orange-500 to-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:from-orange-600 hover:to-blue-700 transition duration-150 ease-in-out"
+                        class="inline-flex items-center px-4 py-2 bg-orange-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-orange-600 transition duration-150 ease-in-out"
                     >
                         <PlusCircleIcon class="h-4 w-4 mr-2" />
                         Tambah Dokumen
@@ -277,7 +277,7 @@ const formatDate = (date) => {
                         <div class="flex items-end space-x-2 h-48">
                             <div v-for="month in monthly_uploads" :key="month.month"
                                  class="flex-1 flex flex-col items-center">
-                                <div class="w-full bg-gradient-to-t from-orange-500 to-blue-500 rounded-t hover:from-orange-600 hover:to-blue-600 transition-colors duration-200"
+                                <div class="w-full bg-blue-500 rounded-t hover:bg-orange-500 transition-colors duration-200"
                                      :style="{ height: (month.count / Math.max(...monthly_uploads.map(m => m.count)) * 160) + 'px' }">
                                 </div>
                                 <div class="mt-2 text-xs text-gray-500 text-center">
@@ -312,7 +312,7 @@ const formatDate = (date) => {
                                         <h4 class="font-medium text-gray-900">🏷️ {{ category.name }}</h4>
                                         <p class="text-sm text-gray-500">📄 {{ category.total_documents }} dokumen</p>
                                     </div>
-                                    <div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold bg-gradient-to-r from-blue-500 to-orange-500">
+                                    <div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold bg-blue-500">
                                         {{ category.total_documents }}
                                     </div>
                                 </div>

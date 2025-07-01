@@ -36,7 +36,7 @@ const formatDate = (date) => {
     <AuthenticatedLayout>
         <template #header>
             <div class="flex items-center">
-                <div class="bg-gradient-to-r from-blue-600 to-orange-500 p-2 rounded-lg mr-3">
+                <div class="bg-blue-600 p-2 rounded-lg mr-3">
                     <BookOpenIcon class="h-6 w-6 text-white" />
                 </div>
                 <div>
@@ -49,7 +49,7 @@ const formatDate = (date) => {
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <!-- Welcome Hero Section -->
-                <div class="bg-gradient-to-r from-blue-700 via-blue-600 to-orange-500 overflow-hidden shadow-xl sm:rounded-lg mb-8">
+                <div class="bg-blue-700 overflow-hidden shadow-xl sm:rounded-lg mb-8">
                     <div class="p-8 text-white relative">
                         <!-- Background Pattern -->
                         <div class="absolute inset-0 opacity-10">
@@ -66,22 +66,32 @@ const formatDate = (date) => {
 
                         <div class="relative z-10">
                             <div class="flex items-center justify-between">
-                                <div>
-                                    <h1 class="text-4xl font-bold mb-2">🚆 Selamat Datang di Sistem Arsip Digital</h1>
-                                    <h2 class="text-2xl font-semibold mb-2">PT Kereta Api Indonesia (Persero)</h2>
-                                    <h3 class="text-xl text-blue-100 mb-4">Daerah Operasi 6 Yogyakarta</h3>
-                                    <p class="text-blue-100 text-lg mb-4">Digitalisasi dokumen untuk pelayanan kereta api yang lebih baik</p>
+                                <div class="flex-1">
+                                    <h1 class="text-4xl font-bold mb-2">🚆 Sistem Arsip Digital PT KAI</h1>
+                                    <h2 class="text-2xl font-semibold mb-2">Daerah Operasi 6 Yogyakarta</h2>
+                                    <p class="text-blue-100 text-lg mb-4">Akses dokumen operasional untuk pelayanan kereta api yang optimal</p>
                                     <div class="flex items-center space-x-4 text-sm">
-                                        <span class="bg-white/20 px-3 py-1 rounded-full">🚀 Efisiensi Operasional</span>
-                                        <span class="bg-white/20 px-3 py-1 rounded-full">📋 Manajemen Dokumen</span>
-                                        <span class="bg-white/20 px-3 py-1 rounded-full">⚡ Akses Cepat</span>
+                                        <span class="bg-white/20 px-3 py-1 rounded-full">🔍 Pencarian Mudah</span>
+                                        <span class="bg-white/20 px-3 py-1 rounded-full">📁 Kategori Terstruktur</span>
+                                        <span class="bg-white/20 px-3 py-1 rounded-full">⬇️ Download Cepat</span>
                                     </div>
                                 </div>
-                                <div class="hidden md:block">
-                                    <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-6">
-                                        <div class="text-6xl text-center mb-2">🚆</div>
-                                        <p class="text-center text-sm font-semibold">KAI DAOP 6</p>
-                                        <p class="text-center text-xs">Yogyakarta</p>
+                                <div class="hidden md:block ml-8">
+                                    <!-- Logo/Branding Slot DAOP 6 -->
+                                    <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-6 text-center">
+                                        <!-- Placeholder untuk logo KAI DAOP 6 -->
+                                        <div class="w-32 h-32 mx-auto mb-4 bg-white/30 rounded-xl flex items-center justify-center">
+                                            <div class="text-center">
+                                                <div class="text-6xl mb-2">🚆</div>
+                                                <div class="text-sm font-bold text-white">LOGO</div>
+                                                <div class="text-xs text-blue-200">KAI DAOP 6</div>
+                                            </div>
+                                        </div>
+                                        <h3 class="text-lg font-bold mb-1">PT KAI DAOP 6</h3>
+                                        <p class="text-sm text-blue-200">Yogyakarta</p>
+                                        <div class="mt-3 text-xs bg-orange-500/20 px-2 py-1 rounded-full">
+                                            Digital Archive System
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -90,7 +100,7 @@ const formatDate = (date) => {
                             <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
                                 <div class="bg-white/20 backdrop-blur-sm rounded-xl p-6 hover:bg-white/30 transition-all duration-200 border-l-4 border-orange-300">
                                     <div class="flex items-center">
-                                        <div class="bg-orange-500/30 p-3 rounded-full mr-4">
+                                        <div class="bg-orange-500 p-3 rounded-full mr-4">
                                             <DocumentTextIcon class="h-8 w-8 text-white" />
                                         </div>
                                         <div>
@@ -102,7 +112,7 @@ const formatDate = (date) => {
                                 </div>
                                 <div class="bg-white/20 backdrop-blur-sm rounded-xl p-6 hover:bg-white/30 transition-all duration-200 border-l-4 border-blue-300">
                                     <div class="flex items-center">
-                                        <div class="bg-blue-500/30 p-3 rounded-full mr-4">
+                                        <div class="bg-blue-500 p-3 rounded-full mr-4">
                                             <FolderIcon class="h-8 w-8 text-white" />
                                         </div>
                                         <div>
@@ -114,7 +124,7 @@ const formatDate = (date) => {
                                 </div>
                                 <div class="bg-white/20 backdrop-blur-sm rounded-xl p-6 hover:bg-white/30 transition-all duration-200 border-l-4 border-white">
                                     <div class="flex items-center">
-                                        <div class="bg-white/30 p-3 rounded-full mr-4">
+                                        <div class="bg-white p-3 rounded-full mr-4">
                                             <TagIcon class="h-8 w-8 text-blue-700" />
                                         </div>
                                         <div>
@@ -125,6 +135,50 @@ const formatDate = (date) => {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Branding Section -->
+                <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
+                    <!-- Company Branding Cards -->
+                    <div class="bg-white overflow-hidden shadow-lg sm:rounded-xl border-t-4 border-blue-600">
+                        <div class="p-6 text-center">
+                            <div class="w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center">
+                                <div class="text-2xl">🚆</div>
+                            </div>
+                            <h3 class="text-sm font-semibold text-gray-900">PT KAI</h3>
+                            <p class="text-xs text-blue-600">Kereta Api Indonesia</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white overflow-hidden shadow-lg sm:rounded-xl border-t-4 border-orange-500">
+                        <div class="p-6 text-center">
+                            <div class="w-16 h-16 mx-auto mb-4 bg-orange-100 rounded-full flex items-center justify-center">
+                                <div class="text-2xl">🏢</div>
+                            </div>
+                            <h3 class="text-sm font-semibold text-gray-900">DAOP 6</h3>
+                            <p class="text-xs text-orange-600">Daerah Operasi 6</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white overflow-hidden shadow-lg sm:rounded-xl border-t-4 border-blue-500">
+                        <div class="p-6 text-center">
+                            <div class="w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center">
+                                <div class="text-2xl">🏛️</div>
+                            </div>
+                            <h3 class="text-sm font-semibold text-gray-900">Yogyakarta</h3>
+                            <p class="text-xs text-blue-600">Daerah Istimewa</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white overflow-hidden shadow-lg sm:rounded-xl border-t-4 border-orange-600">
+                        <div class="p-6 text-center">
+                            <div class="w-16 h-16 mx-auto mb-4 bg-orange-100 rounded-full flex items-center justify-center">
+                                <div class="text-2xl">📋</div>
+                            </div>
+                            <h3 class="text-sm font-semibold text-gray-900">Arsip Digital</h3>
+                            <p class="text-xs text-orange-600">Sistem Terintegrasi</p>
                         </div>
                     </div>
                 </div>
@@ -144,7 +198,7 @@ const formatDate = (date) => {
                                 </div>
                             </div>
                             <p class="text-sm text-orange-600 group-hover:text-orange-800">
-                                ⚡ Sistem pencarian terintegrasi KAI →
+                                ⚡ Akses dokumen KAI DAOP 6 →
                             </p>
                         </div>
                     </Link>
@@ -158,11 +212,11 @@ const formatDate = (date) => {
                                 </div>
                                 <div class="ml-4">
                                     <h3 class="text-xl font-semibold text-gray-900">🕒 Aktivitas Terbaru</h3>
-                                    <p class="text-gray-600">Update dokumen operasional DAOP 6</p>
+                                    <p class="text-gray-600">Update dokumen operasional terkini</p>
                                 </div>
                             </div>
                             <p class="text-sm text-blue-600">
-                                📊 {{ recent_documents.length }} dokumen baru ditambahkan
+                                📊 {{ recent_documents.length }} dokumen baru tersedia
                             </p>
                         </div>
                     </div>
@@ -200,8 +254,8 @@ const formatDate = (date) => {
                                 >
                                     <div class="flex-1 min-w-0">
                                         <div class="flex items-center mb-3">
-                                            <div class="bg-gradient-to-r from-blue-100 to-orange-100 p-2 rounded-lg mr-3 group-hover:from-blue-200 group-hover:to-orange-200 transition-colors duration-200">
-                                                <DocumentTextIcon class="h-5 w-5 text-blue-600" />
+                                            <div class="bg-blue-100 p-2 rounded-lg mr-3 group-hover:bg-orange-100 transition-colors duration-200">
+                                                <DocumentTextIcon class="h-5 w-5 text-blue-600 group-hover:text-orange-600" />
                                             </div>
                                             <Link
                                                 :href="route('documents.show', document.id)"
@@ -272,7 +326,7 @@ const formatDate = (date) => {
                                             ></div>
                                             <span class="text-sm text-gray-700 truncate font-medium">{{ division.name }}</span>
                                         </div>
-                                        <span class="text-sm font-bold text-white bg-gradient-to-r from-blue-500 to-orange-500 px-3 py-1 rounded-full">{{ division.total_documents }}</span>
+                                        <span class="text-sm font-bold text-white bg-blue-500 px-3 py-1 rounded-full">{{ division.total_documents }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -305,17 +359,17 @@ const formatDate = (date) => {
                                             ></div>
                                             <span class="text-sm text-gray-700 truncate font-medium">{{ category.name }}</span>
                                         </div>
-                                        <span class="text-sm font-bold text-white bg-gradient-to-r from-orange-500 to-blue-500 px-3 py-1 rounded-full">{{ category.total_documents }}</span>
+                                        <span class="text-sm font-bold text-white bg-orange-500 px-3 py-1 rounded-full">{{ category.total_documents }}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- PT KAI Info Card -->
-                        <div class="bg-gradient-to-br from-blue-50 via-white to-orange-50 overflow-hidden shadow-lg sm:rounded-xl border-2 border-blue-200">
+                        <div class="bg-blue-50 overflow-hidden shadow-lg sm:rounded-xl border-2 border-blue-200">
                             <div class="p-6">
                                 <div class="flex items-center mb-3">
-                                    <div class="bg-gradient-to-r from-blue-500 to-orange-500 p-2 rounded-full mr-3">
+                                    <div class="bg-blue-600 p-2 rounded-full mr-3">
                                         <BookOpenIcon class="h-5 w-5 text-white" />
                                     </div>
                                     <h3 class="text-lg font-semibold text-gray-900">🚆 Tentang Sistem</h3>
@@ -350,3 +404,4 @@ const formatDate = (date) => {
         </div>
     </AuthenticatedLayout>
 </template>
+
