@@ -33,6 +33,6 @@ class Division extends Model
 
     public function getTotalDocumentsAttribute()
     {
-        return $this->documents()->count();
+        return $this->documents()->where('is_active', true)->count();
     }
 }

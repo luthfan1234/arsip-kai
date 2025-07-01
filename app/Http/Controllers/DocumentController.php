@@ -17,6 +17,8 @@ class DocumentController extends Controller
     use AuthorizesRequests;
     public function index(Request $request): \Inertia\Response
     {
+        $user = \Illuminate\Support\Facades\Auth::user();
+
         $query = Document::with(['division', 'category', 'uploader'])
             ->where('is_active', true)
             ->orderBy('created_at', 'desc');
@@ -36,12 +38,20 @@ class DocumentController extends Controller
             $query->byCategory($request->category);
         }
 
-        return Inertia::render('Documents/Index', [
-            'documents' => $query->paginate(10)->withQueryString(),
+        $data = [
+            'documents' => $query->paginate(12)->withQueryString(),
             'divisions' => Division::where('is_active', true)->get(),
             'categories' => Category::where('is_active', true)->get(),
             'filters' => $request->only(['search', 'division', 'category']),
-        ]);
+        ];
+
+        // Return different views based on user role
+        // Adjust this check according to your user model's role implementation
+        if (method_exists($user, 'hasRole') ? $user->hasRole('admin') : ($user->role === 'admin')) {
+            return Inertia::render('Documents/Index', $data);
+        } else {
+            return Inertia::render('User/Documents/Index', $data);
+        }
     }
 
     public function create(): \Inertia\Response
@@ -64,7 +74,7 @@ class DocumentController extends Controller
             'division_id' => 'required|exists:divisions,id',
             'category_id' => 'required|exists:categories,id',
             'version' => 'required|string|max:10',
-            'file' => 'required|file|mimes:pdf,doc,docx,xls,xlsx|max:10240', // 10MB max
+            'file' => 'required|file|mimes:pdf,doc,docx,xls,xlsx|max:10240',
         ]);
 
         if ($request->hasFile('file')) {
@@ -78,7 +88,7 @@ class DocumentController extends Controller
                 'file_name' => $file->getClientOriginalName(),
                 'file_type' => $file->getClientMimeType(),
                 'file_size' => $file->getSize(),
-                'uploaded_by' => $request->user()->id,
+                'uploaded_by' => \Illuminate\Support\Facades\Auth::id(),
                 'upload_date' => now(),
             ]);
 
@@ -124,7 +134,6 @@ class DocumentController extends Controller
         ]);
 
         if ($request->hasFile('file')) {
-            // Delete old file
             if ($document->file_path && Storage::disk('public')->exists($document->file_path)) {
                 Storage::disk('public')->delete($document->file_path);
             }
@@ -153,7 +162,7 @@ class DocumentController extends Controller
             Storage::disk('public')->delete($document->file_path);
         }
 
-        $document->update(['is_active' => false]); // Soft delete
+        $document->update(['is_active' => false]);
 
         return Redirect::route('documents.index')
             ->with('success', 'Dokumen berhasil dihapus.');
