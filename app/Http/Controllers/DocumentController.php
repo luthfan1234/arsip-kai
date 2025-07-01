@@ -47,7 +47,7 @@ class DocumentController extends Controller
 
         // Return different views based on user role
         // Adjust this check according to your user model's role implementation
-        if (method_exists($user, 'hasRole') ? $user->hasRole('admin') : ($user->role === 'admin')) {
+        if ($user && isset($user->role) && $user->role === 'admin') {
             return Inertia::render('Documents/Index', $data);
         } else {
             return Inertia::render('User/Documents/Index', $data);

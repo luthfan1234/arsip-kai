@@ -1,13 +1,5 @@
 <script setup>
-import { ref } from 'vue';
-import ApplicationLogo from '@/Components/ApplicationLogo.vue';
-import Dropdown from '@/Components/Dropdown.vue';
-import DropdownLink from '@/Components/DropdownLink.vue';
-import NavLink from '@/Components/NavLink.vue';
-import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
-import { Link } from '@inertiajs/vue3';
-
-const showingNavigationDropdown = ref(false);
+import Navbar from '@/Components/Navbar.vue';
 
 defineProps({
     title: String,
@@ -15,195 +7,99 @@ defineProps({
 </script>
 
 <template>
-    <div>
-        <div class="min-h-screen bg-gray-100">
-            <nav class="bg-white border-b border-gray-100">
-                <!-- Primary Navigation Menu -->
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex justify-between h-16">
-                        <div class="flex">
-                            <!-- Logo -->
-                            <div class="shrink-0 flex items-center">
-                                <Link :href="route('dashboard')">
-                                    <ApplicationLogo
-                                        class="block h-9 w-auto fill-current text-gray-800"
-                                    />
-                                </Link>
-                            </div>
+    <div class="min-h-screen bg-slate-100">
+        <!-- Navbar Component -->
+        <Navbar />
 
-                            <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Dashboard
-                                </NavLink>
-                                <NavLink :href="route('documents.index')" :active="route().current('documents.*')">
-                                    Dokumen
-                                </NavLink>
-                                <div v-if="$page.props.auth.user.role === 'admin'" class="hidden sm:flex sm:items-center sm:ms-6">
-                                    <div class="ms-3 relative">
-                                        <Dropdown align="right" width="48">
-                                            <template #trigger>
-                                                <span class="inline-flex rounded-md">
-                                                    <button
-                                                        type="button"
-                                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
-                                                    >
-                                                        Master Data
-                                                        <svg
-                                                            class="ms-2 -me-0.5 h-4 w-4"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            viewBox="0 0 20 20"
-                                                            fill="currentColor"
-                                                        >
-                                                            <path
-                                                                fill-rule="evenodd"
-                                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                                clip-rule="evenodd"
-                                                            />
-                                                        </svg>
-                                                    </button>
-                                                </span>
-                                            </template>
-
-                                            <template #content>
-                                                <DropdownLink :href="route('divisions.index')">
-                                                    Divisi
-                                                </DropdownLink>
-                                                <DropdownLink :href="route('categories.index')">
-                                                    Kategori
-                                                </DropdownLink>
-                                            </template>
-                                        </Dropdown>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="hidden sm:flex sm:items-center sm:ms-6">
-                            <!-- Settings Dropdown -->
-                            <div class="ms-3 relative">
-                                <Dropdown align="right" width="48">
-                                    <template #trigger>
-                                        <span class="inline-flex rounded-md">
-                                            <button
-                                                type="button"
-                                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
-                                            >
-                                                {{ $page.props.auth.user.name }}
-                                                <span class="ms-2 px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded-full">
-                                                    {{ $page.props.auth.user.role }}
-                                                </span>
-                                                <svg
-                                                    class="ms-2 -me-0.5 h-4 w-4"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                    fill="currentColor"
-                                                >
-                                                    <path
-                                                        fill-rule="evenodd"
-                                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                        clip-rule="evenodd"
-                                                    />
-                                                </svg>
-                                            </button>
-                                        </span>
-                                    </template>
-
-                                    <template #content>
-                                        <DropdownLink :href="route('profile.edit')"> Profile </DropdownLink>
-                                        <DropdownLink :href="route('logout')" method="post" as="button">
-                                            Log Out
-                                        </DropdownLink>
-                                    </template>
-                                </Dropdown>
-                            </div>
-                        </div>
-
-                        <!-- Hamburger -->
-                        <div class="-me-2 flex items-center sm:hidden">
-                            <button
-                                @click="showingNavigationDropdown = !showingNavigationDropdown"
-                                class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
-                            >
-                                <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                                    <path
-                                        :class="{
-                                            hidden: showingNavigationDropdown,
-                                            'inline-flex': !showingNavigationDropdown,
-                                        }"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M4 6h16M4 12h16M4 18h16"
-                                    />
-                                    <path
-                                        :class="{
-                                            hidden: !showingNavigationDropdown,
-                                            'inline-flex': showingNavigationDropdown,
-                                        }"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M6 18L18 6M6 6l12 12"
-                                    />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Responsive Navigation Menu -->
-                <div
-                    :class="{ block: showingNavigationDropdown, hidden: !showingNavigationDropdown }"
-                    class="sm:hidden"
-                >
-                    <div class="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                            Dashboard
-                        </ResponsiveNavLink>
-                        <ResponsiveNavLink :href="route('documents.index')" :active="route().current('documents.*')">
-                            Dokumen
-                        </ResponsiveNavLink>
-                        <div v-if="$page.props.auth.user.role === 'admin'" class="pt-2 pb-3 space-y-1">
-                            <ResponsiveNavLink :href="route('divisions.index')" :active="route().current('divisions.*')">
-                                Divisi
-                            </ResponsiveNavLink>
-                            <ResponsiveNavLink :href="route('categories.index')" :active="route().current('categories.*')">
-                                Kategori
-                            </ResponsiveNavLink>
-                        </div>
-                    </div>
-
-                    <!-- Responsive Settings Options -->
-                    <div class="pt-4 pb-1 border-t border-gray-200">
-                        <div class="px-4">
-                            <div class="font-medium text-base text-gray-800">
-                                {{ $page.props.auth.user.name }}
-                            </div>
-                            <div class="font-medium text-sm text-gray-500">{{ $page.props.auth.user.email }}</div>
-                        </div>
-
-                        <div class="mt-3 space-y-1">
-                            <ResponsiveNavLink :href="route('profile.edit')"> Profile </ResponsiveNavLink>
-                            <ResponsiveNavLink :href="route('logout')" method="post" as="button">
-                                Log Out
-                            </ResponsiveNavLink>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-
+        <!-- Konten Utama -->
+        <main class="container mx-auto p-6">
             <!-- Page Heading -->
-            <header class="bg-white shadow" v-if="$slots.header">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    <slot name="header" />
-                </div>
-            </header>
+            <div v-if="$slots.header" class="mb-6">
+                <slot name="header" />
+            </div>
 
             <!-- Page Content -->
-            <main>
-                <slot />
-            </main>
-        </div>
+            <slot />
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white mt-16">
+            <div class="container mx-auto px-6 py-12">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Company Info -->
+                    <div>
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H3m2 0h3M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">PT Kereta Api Indonesia</h3>
+                                <p class="text-orange-300 text-sm">DAOP 6 Yogyakarta</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            Melayani perjalanan kereta api di wilayah Daerah Istimewa Yogyakarta dan sekitarnya dengan komitmen pada keselamatan, kenyamanan, dan ketepatan waktu.
+                        </p>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4 text-orange-300">Kontak & Layanan</h3>
+                        <div class="space-y-3 text-sm text-gray-300">
+                            <div class="flex items-center space-x-3">
+                                <svg class="w-4 h-4 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                </svg>
+                                <span>Call Center: 121</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <svg class="w-4 h-4 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                                <span>cs@kai.id</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <svg class="w-4 h-4 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9" />
+                                </svg>
+                                <span>www.kai.id</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- System Info -->
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4 text-orange-300">Sistem Informasi</h3>
+                        <div class="space-y-2 text-sm text-gray-300">
+                            <p>Sistem Manajemen Dokumen Digital</p>
+                            <p>DAOP 6 Yogyakarta</p>
+                            <div class="mt-4 pt-4 border-t border-gray-700">
+                                <p class="text-xs text-gray-400">
+                                    Version 1.0.0<br>
+                                    Build {{ new Date().getFullYear() }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Copyright -->
+                <div class="border-t border-gray-700 mt-8 pt-6">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between space-y-2 md:space-y-0">
+                        <p class="text-gray-400 text-sm">
+                            © {{ new Date().getFullYear() }} PT Kereta Api Indonesia (Persero). Hak Cipta Dilindungi.
+                        </p>
+                        <div class="flex space-x-6 text-sm text-gray-400">
+                            <a href="#" class="hover:text-white transition-colors">Kebijakan Privasi</a>
+                            <a href="#" class="hover:text-white transition-colors">Syarat & Ketentuan</a>
+                            <a href="#" class="hover:text-white transition-colors">Bantuan</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 </template>
+

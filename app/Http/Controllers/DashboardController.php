@@ -8,12 +8,18 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     public function index(): Response
     {
-        $user = auth()->user();
+        $user = Auth::user();
+        
+        // Ensure user has role
+        if (!$user->roles->first()) {
+            $user->assignRole('user'); // Default role
+        }
 
         // Get statistics
         $totalDocuments = Document::where('is_active', true)->count();
