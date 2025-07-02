@@ -49,7 +49,7 @@ const formatDate = (date) => {
                         <p class="text-sm text-orange-600 mt-1">Sistem Arsip Digital DAOP 6 Yogyakarta</p>
                     </div>
                 </div>
-                <Link 
+                <Link
                     :href="route('documents.create')"
                     class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600 border border-transparent rounded-xl font-semibold text-sm text-white uppercase tracking-wider hover:from-orange-600 hover:to-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 transition-all duration-200 shadow-lg hover:shadow-xl"
                 >
@@ -166,87 +166,126 @@ const formatDate = (date) => {
                 </Link>
             </div>
 
-            <!-- Content Sections -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- Recent Documents -->
-                <div class="bg-white rounded-2xl border border-gray-200 shadow-lg">
-                    <div class="p-6 border-b border-gray-100">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center">
-                                <FolderOpenIcon class="h-6 w-6 text-orange-600 mr-3" />
-                                <h3 class="text-xl font-bold text-gray-900">Dokumen Terbaru</h3>
-                            </div>
-                            <Link :href="route('documents.index')" class="text-sm font-semibold text-orange-600 hover:text-orange-700 bg-orange-50 hover:bg-orange-100 px-4 py-2 rounded-lg transition-all duration-200">
-                                Lihat Semua →
-                            </Link>
-                        </div>
-                    </div>
+            <!-- Main Content Grid -->
+            <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
 
-                    <div class="p-6">
-                        <div v-if="recent_documents.length === 0" class="text-center py-16">
-                            <div class="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <DocumentTextIcon class="w-10 h-10 text-orange-400" />
-                            </div>
-                            <p class="text-lg font-semibold text-gray-900">Belum ada dokumen</p>
-                            <p class="text-sm text-gray-500 mt-2">Dokumen akan muncul di sini</p>
-                        </div>
-
-                        <div v-else class="space-y-4">
-                            <div v-for="document in recent_documents" :key="document.id"
-                                 class="flex items-center justify-between p-5 rounded-xl hover:bg-orange-50 transition-all duration-200 border border-transparent hover:border-orange-200 group">
-                                <div class="flex-1 min-w-0">
-                                    <Link :href="route('documents.show', document.id)"
-                                          class="text-base font-semibold text-gray-900 hover:text-orange-600 truncate block group-hover:text-orange-700">
-                                        {{ document.title }}
-                                    </Link>
-                                    <p class="text-sm text-gray-500 mt-1">
-                                        {{ document.division }} • {{ document.category }}
-                                    </p>
-                                    <p class="text-xs text-gray-400 mt-1">
-                                        {{ formatDate(document.created_at) }}
-                                    </p>
+                <!-- Recent Documents - Takes 2 columns -->
+                <div class="xl:col-span-2">
+                    <div class="bg-white rounded-2xl border border-gray-200 shadow-lg h-full">
+                        <div class="p-6 border-b border-gray-100">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <FolderOpenIcon class="h-6 w-6 text-orange-600 mr-3" />
+                                    <h3 class="text-xl font-bold text-gray-900">Dokumen Terbaru</h3>
                                 </div>
-                                <div class="flex items-center space-x-3 ml-4">
-                                    <Link :href="route('documents.show', document.id)"
-                                          class="p-2 text-gray-400 hover:text-orange-600 hover:bg-orange-100 rounded-lg transition-all duration-200">
-                                        <EyeIcon class="w-5 h-5" />
-                                    </Link>
-                                    <a :href="route('documents.download', document.id)"
-                                       class="p-2 text-gray-400 hover:text-green-600 hover:bg-green-100 rounded-lg transition-all duration-200">
-                                        <ArrowDownTrayIcon class="w-5 h-5" />
-                                    </a>
+                                <Link :href="route('documents.index')" class="text-sm font-semibold text-orange-600 hover:text-orange-700 bg-orange-50 hover:bg-orange-100 px-4 py-2 rounded-lg transition-all duration-200">
+                                    Lihat Semua →
+                                </Link>
+                            </div>
+                        </div>
+
+                        <div class="p-6">
+                            <div v-if="recent_documents.length === 0" class="text-center py-16">
+                                <div class="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <DocumentTextIcon class="w-10 h-10 text-orange-400" />
+                                </div>
+                                <p class="text-lg font-semibold text-gray-900">Belum ada dokumen</p>
+                                <p class="text-sm text-gray-500 mt-2">Dokumen akan muncul di sini</p>
+                            </div>
+
+                            <div v-else class="space-y-4">
+                                <div v-for="document in recent_documents" :key="document.id"
+                                     class="flex items-center justify-between p-5 rounded-xl hover:bg-orange-50 transition-all duration-200 border border-transparent hover:border-orange-200 group">
+                                    <div class="flex-1 min-w-0">
+                                        <Link :href="route('documents.show', document.id)"
+                                              class="text-base font-semibold text-gray-900 hover:text-orange-600 truncate block group-hover:text-orange-700">
+                                            {{ document.title }}
+                                        </Link>
+                                        <p class="text-sm text-gray-500 mt-1">
+                                            {{ document.division }} • {{ document.category }}
+                                        </p>
+                                        <p class="text-xs text-gray-400 mt-1">
+                                            {{ formatDate(document.created_at) }}
+                                        </p>
+                                    </div>
+                                    <div class="flex items-center space-x-3 ml-4">
+                                        <Link :href="route('documents.show', document.id)"
+                                              class="p-2 text-gray-400 hover:text-orange-600 hover:bg-orange-100 rounded-lg transition-all duration-200">
+                                            <EyeIcon class="w-5 h-5" />
+                                        </Link>
+                                        <a :href="route('documents.download', document.id)"
+                                           class="p-2 text-gray-400 hover:text-green-600 hover:bg-green-100 rounded-lg transition-all duration-200">
+                                            <ArrowDownTrayIcon class="w-5 h-5" />
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Documents per Division Chart -->
+                <!-- Monthly Uploads Summary -->
                 <div class="bg-white rounded-2xl border border-gray-200 shadow-lg">
                     <div class="p-6 border-b border-gray-100">
                         <div class="flex items-center">
-                            <ChartBarIcon class="h-6 w-6 text-blue-600 mr-3" />
-                            <h3 class="text-xl font-bold text-gray-900">Dokumen per Unit Kerja</h3>
+                            <CalendarIcon class="h-6 w-6 text-orange-600 mr-3" />
+                            <h3 class="text-xl font-bold text-gray-900">Upload Bulanan</h3>
                         </div>
                     </div>
 
                     <div class="p-6">
-                        <div v-if="documents_per_division.length === 0" class="text-center py-16">
-                            <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <BuildingOfficeIcon class="w-10 h-10 text-blue-400" />
-                            </div>
-                            <p class="text-lg font-semibold text-gray-900">Belum ada data</p>
-                            <p class="text-sm text-gray-500 mt-2">Data divisi akan muncul di sini</p>
+                        <div v-if="monthly_uploads.length === 0" class="text-center py-12">
+                            <CalendarIcon class="mx-auto h-12 w-12 text-gray-400" />
+                            <p class="mt-4 text-base font-semibold text-gray-900">Belum ada data</p>
+                            <p class="mt-2 text-sm text-gray-500">Data upload akan muncul di sini</p>
                         </div>
 
                         <div v-else class="space-y-4">
-                            <div v-for="division in documents_per_division" :key="division.id" class="space-y-3">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-sm font-semibold text-gray-700">{{ division.name }}</span>
-                                    <span class="text-sm font-bold text-gray-900 bg-gray-100 px-3 py-1 rounded-full">{{ division.total_documents }}</span>
+                            <div v-for="month in monthly_uploads.slice(0, 6)" :key="month.month"
+                                 class="flex items-center justify-between p-4 rounded-xl bg-orange-50 hover:bg-orange-100 transition-colors duration-200">
+                                <div>
+                                    <p class="font-semibold text-gray-900">{{ month.month }}</p>
+                                    <p class="text-sm text-gray-600">Upload dokumen</p>
                                 </div>
-                                <div class="w-full bg-gray-200 rounded-full h-3">
-                                    <div class="h-3 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 transition-all duration-500 shadow-sm"
+                                <div class="text-right">
+                                    <p class="text-2xl font-bold text-orange-600">{{ month.count }}</p>
+                                    <p class="text-xs text-gray-500">dokumen</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Row -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+                <!-- Documents per Division -->
+                <div class="bg-white rounded-2xl border border-gray-200 shadow-lg">
+                    <div class="p-6 border-b border-gray-100">
+                        <div class="flex items-center">
+                            <BuildingOfficeIcon class="h-6 w-6 text-blue-600 mr-3" />
+                            <h3 class="text-xl font-bold text-gray-900">Distribusi per Unit Kerja</h3>
+                        </div>
+                    </div>
+
+                    <div class="p-6">
+                        <div v-if="documents_per_division.length === 0" class="text-center py-12">
+                            <BuildingOfficeIcon class="mx-auto h-12 w-12 text-gray-400" />
+                            <p class="mt-4 text-base font-semibold text-gray-900">Belum ada data</p>
+                            <p class="mt-2 text-sm text-gray-500">Data divisi akan muncul di sini</p>
+                        </div>
+
+                        <div v-else class="space-y-6">
+                            <div v-for="division in documents_per_division.slice(0, 8)" :key="division.id">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm font-semibold text-gray-700 truncate">{{ division.name }}</span>
+                                    <span class="text-sm font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full ml-2">
+                                        {{ division.total_documents }}
+                                    </span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="h-2 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-700"
                                          :style="{ width: (division.total_documents / Math.max(...documents_per_division.map(d => d.total_documents)) * 100) + '%' }">
                                     </div>
                                 </div>
@@ -254,85 +293,31 @@ const formatDate = (date) => {
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Monthly Upload Chart -->
-            <div class="bg-white rounded-2xl border border-gray-200 shadow-lg">
-                <div class="p-6 border-b border-gray-100">
-                    <div class="flex items-center">
-                        <CalendarIcon class="h-6 w-6 text-orange-600 mr-3" />
-                        <h3 class="text-xl font-bold text-gray-900">Upload Dokumen (6 Bulan Terakhir)</h3>
-                    </div>
-                </div>
-                
-                <div class="p-6">
-                    <div v-if="monthly_uploads.length === 0" class="text-center py-16">
-                        <CalendarIcon class="mx-auto h-16 w-16 text-gray-400" />
-                        <p class="mt-4 text-lg font-semibold text-gray-900">Belum ada data upload</p>
-                        <p class="mt-2 text-sm text-gray-500">Data upload akan muncul di sini</p>
-                    </div>
-
-                    <div v-else class="relative">
-                        <!-- Chart Container -->
-                        <div class="flex items-end justify-center space-x-4 h-80 px-4">
-                            <div v-for="month in monthly_uploads" :key="month.month" 
-                                 class="flex-1 flex flex-col items-center max-w-20 group">
-                                <!-- Bar -->
-                                <div class="w-full bg-gradient-to-t from-orange-500 to-orange-400 rounded-t-xl hover:from-orange-600 hover:to-orange-500 transition-all duration-300 shadow-lg hover:shadow-xl group-hover:scale-105 min-h-4 relative" 
-                                     :style="{ height: Math.max(20, (month.count / Math.max(...monthly_uploads.map(m => m.count)) * 250)) + 'px' }">
-                                    <!-- Value Label -->
-                                    <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                                        <span class="bg-gray-900 text-white text-xs px-2 py-1 rounded-lg shadow-lg">
-                                            {{ month.count }}
-                                        </span>
-                                    </div>
-                                </div>
-                                <!-- Month Label -->
-                                <div class="mt-4 text-xs text-gray-600 text-center font-semibold">
-                                    {{ month.month }}
-                                </div>
-                                <!-- Count -->
-                                <div class="text-sm font-bold text-gray-800 mt-1">
-                                    {{ month.count }}
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Y-axis labels -->
-                        <div class="absolute left-0 top-0 h-80 flex flex-col justify-between text-xs text-gray-400 -ml-8">
-                            <span>{{ Math.max(...monthly_uploads.map(m => m.count)) }}</span>
-                            <span>{{ Math.round(Math.max(...monthly_uploads.map(m => m.count)) / 2) }}</span>
-                            <span>0</span>
+                <!-- Documents per Category -->
+                <div class="bg-white rounded-2xl border border-gray-200 shadow-lg">
+                    <div class="p-6 border-b border-gray-100">
+                        <div class="flex items-center">
+                            <TagIcon class="h-6 w-6 text-green-600 mr-3" />
+                            <h3 class="text-xl font-bold text-gray-900">Distribusi per Kategori</h3>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Documents per Category -->
-            <div class="bg-white rounded-2xl border border-gray-200 shadow-lg">
-                <div class="p-6 border-b border-gray-100">
-                    <div class="flex items-center">
-                        <TagIcon class="h-6 w-6 text-green-600 mr-3" />
-                        <h3 class="text-xl font-bold text-gray-900">Dokumen per Kategori</h3>
-                    </div>
-                </div>
-                
-                <div class="p-6">
-                    <div v-if="documents_per_category.length === 0" class="text-center py-16">
-                        <TagIcon class="mx-auto h-16 w-16 text-gray-400" />
-                        <p class="mt-4 text-lg font-semibold text-gray-900">Belum ada data kategori</p>
-                        <p class="mt-2 text-sm text-gray-500">Data kategori akan muncul setelah ditambahkan</p>
-                    </div>
+                    <div class="p-6">
+                        <div v-if="documents_per_category.length === 0" class="text-center py-12">
+                            <TagIcon class="mx-auto h-12 w-12 text-gray-400" />
+                            <p class="mt-4 text-base font-semibold text-gray-900">Belum ada data kategori</p>
+                            <p class="mt-2 text-sm text-gray-500">Data kategori akan muncul setelah ditambahkan</p>
+                        </div>
 
-                    <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div v-for="category in documents_per_category" :key="category.id" 
-                             class="p-6 border border-gray-200 rounded-2xl hover:shadow-lg hover:border-green-300 transition-all duration-300 group">
-                            <div class="flex items-center justify-between">
+                        <div v-else class="space-y-4">
+                            <div v-for="category in documents_per_category.slice(0, 6)" :key="category.id"
+                                 class="flex items-center justify-between p-4 border border-gray-200 rounded-xl hover:border-green-300 hover:bg-green-50 transition-all duration-200">
                                 <div class="flex-1">
-                                    <h4 class="font-bold text-gray-900 text-lg group-hover:text-green-700">{{ category.name }}</h4>
+                                    <h4 class="font-semibold text-gray-900">{{ category.name }}</h4>
                                     <p class="text-sm text-gray-500 mt-1">{{ category.total_documents }} dokumen</p>
                                 </div>
-                                <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-white font-bold text-xl bg-gradient-to-br from-green-500 to-green-600 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold bg-gradient-to-br from-green-500 to-green-600 shadow-md">
                                     {{ category.total_documents }}
                                 </div>
                             </div>
