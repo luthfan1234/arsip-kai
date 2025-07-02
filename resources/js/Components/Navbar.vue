@@ -30,7 +30,7 @@ const showingNavigationDropdown = ref(false);
             <div class="flex justify-between items-center h-20">
                 <!-- Logo dan Branding -->
                 <Link :href="route('dashboard')" class="flex items-center space-x-4 hover:opacity-90 transition-all duration-200">
-                    <img src="public\images\Logo_PT_Kereta_Api_Indonesia_(Persero)_2020.svg" alt="Logo PT Kereta Api Indonesia (Persero)" class="h-8 w-auto" />
+                    <img src="/images/Logo_PT_KAI.svg"  class="h-8 w-auto" />
                 </Link>
 
                 <!-- Navigation Links (Desktop) -->
