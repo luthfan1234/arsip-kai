@@ -68,21 +68,6 @@ const showingNavigationDropdown = ref(false);
                     <!-- Master Data Dropdown (Admin Only) -->
                     <div v-if="$page.props.auth.user.role === 'admin'" class="relative">
                         <Dropdown align="right" width="56">
-                            <template #trigger>
-                                <button
-                                    type="button"
-                                    class="flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200"
-                                    :class="route().current('divisions.*') || route().current('categories.*') 
-                                        ? 'text-orange-600 bg-orange-50' 
-                                        : 'text-gray-600 hover:text-orange-600 hover:bg-orange-50'"
-                                >
-                                    <ArchiveBoxIcon class="w-4 h-4" />
-                                    <span>Master Data</span>
-                                    <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                    </svg>
-                                </button>
-                            </template>
                             <template #content>
                                 <div class="py-1">
                                     <DropdownLink :href="route('divisions.index')" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600">
@@ -187,7 +172,6 @@ const showingNavigationDropdown = ref(false);
 
                 <!-- Admin Menu Mobile -->
                 <div v-if="$page.props.auth.user.role === 'admin'" class="pt-2">
-                    <div class="px-3 py-1 text-xs font-medium text-orange-600 uppercase tracking-wider">Master Data</div>
                     <ResponsiveNavLink :href="route('divisions.index')" :active="route().current('divisions.*')"
                         class="flex items-center px-6 py-2 rounded-lg text-sm font-medium transition-all duration-200"
                         :class="route().current('divisions.*')

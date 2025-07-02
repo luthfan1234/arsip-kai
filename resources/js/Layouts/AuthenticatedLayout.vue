@@ -43,37 +43,6 @@ defineProps({
                             Sistem Manajemen Arsip Digital untuk mendukung operasional kereta api yang efisien, terorganisir, dan mudah diakses oleh seluruh unit kerja.
                         </p>
                     </div>
-
-                    <!-- Quick Links -->
-                    <div>
-                        <h4 class="text-sm font-semibold text-gray-900 mb-4">Menu Utama</h4>
-                        <div class="space-y-2 text-sm">
-                            <Link :href="route('dashboard')" class="block text-gray-600 hover:text-orange-600 transition-colors">
-                                Dashboard
-                            </Link>
-                            <Link :href="route('documents.index')" class="block text-gray-600 hover:text-orange-600 transition-colors">
-                                Dokumen
-                            </Link>
-                            <div v-if="$page.props.auth.user.role === 'admin'" class="space-y-2">
-                                <Link :href="route('divisions.index')" class="block text-gray-600 hover:text-orange-600 transition-colors">
-                                    Unit Kerja
-                                </Link>
-                                <Link :href="route('categories.index')" class="block text-gray-600 hover:text-orange-600 transition-colors">
-                                    Kategori
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- System Info -->
-                    <div>
-                        <h4 class="text-sm font-semibold text-gray-900 mb-4">Informasi Sistem</h4>
-                        <div class="space-y-2 text-sm text-gray-600">
-                            <p>Arsip Digital v1.0</p>
-                            <p>Laravel {{ $page.props.laravel_version || '11.x' }}</p>
-                            <p>Build {{ new Date().getFullYear() }}</p>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Copyright -->

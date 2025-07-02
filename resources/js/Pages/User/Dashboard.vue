@@ -39,21 +39,11 @@ const formatDate = (date) => {
     <Head title="Portal Dokumen PT KAI" />
 
     <AuthenticatedLayout>
-        <template #header>
-            <div class="flex items-center space-x-4">
-                <div class="bg-gradient-to-br from-orange-500 to-orange-600 p-3 rounded-xl shadow-lg">
-                    <BookOpenIcon class="h-7 w-7 text-white" />
-                </div>
-                <div>
-                    <h1 class="text-2xl font-bold text-gray-900">Portal Dokumen</h1>
-                    <p class="text-sm text-orange-600 mt-1">Sistem Arsip Digital DAOP 6 Yogyakarta</p>
-                </div>
-            </div>
-        </template>
+
 
         <div class="space-y-8">
             <!-- Welcome Hero Section -->
-            <div class="bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700 rounded-3xl overflow-hidden shadow-2xl">
+            <div class="bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700 rounded-3xl overflow-hidden shadow-2xl mt-8">
                 <div class="p-8 text-white relative">
                     <!-- Background Pattern -->
                     <div class="absolute inset-0 opacity-10">
@@ -244,4 +234,4 @@ const formatDate = (date) => {
         </div>
     </AuthenticatedLayout>
 </template>
-                    
+
