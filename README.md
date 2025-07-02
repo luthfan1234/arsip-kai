@@ -65,8 +65,7 @@ cd archive-system
 
 2. **Install dependencies**
 ```bash
-composer install
-npm install
+
 ```
 
 3. **Environment setup**
